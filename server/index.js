@@ -1,20 +1,21 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const app = express()
 
 const productsController = require('./controllers/products');
 
 const hostname = '127.0.0.1';
-const port = 3000;
+const port = process.env.PORT || 3000;
+
+app.use('/',express.static);
 
 app
 .get('/', (req, res) => {
-  res.status(200).send('Hello World!');
+    res.status(200).send('Happy Sweet New Year');
 })
-.use('api/products',productsController);
+.use('/api/v1/products', productsController)
 
-app.listen(port, hostname, () =>  
-{
-  console.log(`Server running at http://${hostname}:${port}/`);
+
+
+app.listen(port, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
 });
- 
-const fatArrow = x => x* 2; // by being a fat arrow function, it automatically returns the value

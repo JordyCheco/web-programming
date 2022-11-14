@@ -1,13 +1,12 @@
-import { reactive } from "vue";
 import type { products } from "../types/products";
 export interface CartItem {
   quantity: number;
-  product: Product;
+  product: products;
 }
 
 const cart = reactive([] as CartItem[]);
 
-export function addProductToCart(product: Product, quantity: number = 1) {
+export function addProductToCart(product: products, quantity: number = 1) {
   const cartItem = cart.find((item) => item.product.id === product.id);
   if (cartItem) {
     cartItem.quantity += quantity;
